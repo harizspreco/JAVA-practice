@@ -1,25 +1,74 @@
 import java.util.ArrayList;
 
 public class StartupBust{
+	GameHelper helper = new GameHelper();
+	ArrayList<Startup> startups = new ArrayList<Startup>();
+	int numOfGuesses = 0;
+
 	public static void main(String[] args){
-		//make virtual 7x7 grid
-		ArrayList<String> locs = new ArrayList<String>();
+		StartupBust game = new StartupBust();
+		game.setUpGame();
+		game.startPlaying();
+	}
 
-		StringBuilder sb = new StringBuilder();
+	private void setUpGame(){
+		Startup one = new Startup();
+		one.setName("firma1");
+		startups.add(one);
 
-		for(char letter = "A"; letter<"H";letter++){
-			for(int i=0;i<7;i++){
-				sb.append(letter);
-				sb.append(i);
-				locs.add()
+		Startup two = new Startup();
+		two.setName("firma2");
+		startups.add(two);
+
+		Startup three = new Startup();
+		three.setName("firma3");
+		startups.add(three);
+
+		System.out.println("Your goal is to sink all three startups");
+		System.out.println("firma1, firma2, firma3");
+		System.out.System.out.println("Try to sink them all in fewest number of guesses");
+
+		for(Startup startup : startups){
+			ArrayList<String> newLocation = helper.placeStartup(3);
+			startup.setLocationCells(newLocation);
+		}
+	}
+
+	private void startPlaying(){
+		while(!startups.isEmpty()){
+			String userGuess = helper.getUserInput("Enter a guess: ");
+			checkUserInput(userGuess);
+		}
+		finishGame();
+	}
+
+	private void ckeckUserInput(String userGuess){
+		numOfGuesses++;
+		String result = "miss";
+
+		for(Startup startupToTest : startups){
+			result = startupToTest.checkYourself(userGuess);
+
+			if(result.equals("hit")){
+				break;
+			}
+			if(result.equals("kill")){
+				startups.remove(startupToTest);
+				break;
 			}
 		}
-
+		System.out.println(result);
 	}
-}
 
+	private void finishGame(){
+		System.out.println("All startups are dead! Your stocks are worthless")
+		if(numOfGuesses<18){
+			System.out.println("It only took you "+numOfGuesses+" guesses.");
+			System.out.println("You got out before your options sunk.");
+		}else{
+			System.out.println("Took you long enough. "+numOfGuesses+" guesses.");
+			System.out.println("Fish are dancing with your options");
+		}
+	}
 
-
-    sb.append(alphabet);
-    System.out.println(sb.toString());
 }
