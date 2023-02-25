@@ -6,7 +6,7 @@ public class SimpleStartupGame{
 
 		
 		java.util.Random random = new java.util.Random();
-    	int locNum = random.nextInt(4 - 0) + 0;
+    	int locNum = random.nextInt(5);
 
     	int[] randLocs = new int[3];
     	for(int i = 0; i < 3; i++){
@@ -17,8 +17,8 @@ public class SimpleStartupGame{
 
  		while(true){
  			//get user input
- 			java.util.Scanner in = new java.util.Scanner(System.in);
-        	int userGuess = in.nextInt();
+ 			GameHelper helper = new GameHelper();
+        	int userGuess = helper.getUserInput("Enter number between 0 and 6");
         	//increment number of gusses
  			numOfGuesses++;
  			//check user guess
@@ -29,33 +29,5 @@ public class SimpleStartupGame{
 
  		}
  		System.out.println("It took you "+ numOfGuesses +" times to kill the startUp!");
-	}
-}
-
-class SimpleStartup{
-	private int[] locationCells;
-	private int numOfHits = 0;
-
-	public String checkYourself(int guess){
-		String result = "miss";
-
-		for(int cell : locationCells){
-			if(guess == cell){
-				result = "hit";
-				numOfHits++;
-				break;
-			}
-		}
-
-		if(numOfHits == locationCells.length){
-			result = "kill";
-		}
-
-		System.out.println(result);
-		return result;
-	}
-
-	public void setLocationCells(int[] locs){
-		locationCells = locs;
 	}
 }
