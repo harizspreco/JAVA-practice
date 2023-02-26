@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Startup{
+	private String startupName;
 	private ArrayList<String> locationCells;
 
 	public String checkYourself(String userInput){
@@ -21,5 +22,9 @@ public class Startup{
 
 	public void setLocationCells(ArrayList<String> locs){
 		locationCells = locs;
+	}
+
+	public void setName(String name){
+		startupName = name;
 	}
 }
