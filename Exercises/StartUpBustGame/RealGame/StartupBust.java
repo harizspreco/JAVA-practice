@@ -26,7 +26,7 @@ public class StartupBust{
 
 		System.out.println("Your goal is to sink all three startups");
 		System.out.println("firma1, firma2, firma3");
-		System.out.System.out.println("Try to sink them all in fewest number of guesses");
+		System.out.println("Try to sink them all in fewest number of guesses");
 
 		for(Startup startup : startups){
 			ArrayList<String> newLocation = helper.placeStartup(3);
@@ -42,7 +42,7 @@ public class StartupBust{
 		finishGame();
 	}
 
-	private void ckeckUserInput(String userGuess){
+	private void checkUserInput(String userGuess){
 		numOfGuesses++;
 		String result = "miss";
 
@@ -61,7 +61,7 @@ public class StartupBust{
 	}
 
 	private void finishGame(){
-		System.out.println("All startups are dead! Your stocks are worthless")
+		System.out.println("All startups are dead! Your stocks are worthless");
 		if(numOfGuesses<18){
 			System.out.println("It only took you "+numOfGuesses+" guesses.");
 			System.out.println("You got out before your options sunk.");
