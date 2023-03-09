@@ -28,10 +28,9 @@ class Student extends Person{
 	public Student(){
 		//to avoid repeating yourself(same logic in few constructors, make one REAL constr. that calls super() and all the work. USE this())
 		this("Hariz", 23);
-
 	}
 
-
+	//this one is "real" constructor
 	public Student(String newName, int newAge){
 		super(newName);
 		//imagine more code here
