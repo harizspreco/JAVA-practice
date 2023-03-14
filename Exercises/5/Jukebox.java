@@ -7,19 +7,23 @@ public class Jukebox {
 
 	public void go(){
 		List<SongV2> songList = MockSongs.getSongsV2();
-		for(SongV2 song : songList){
-			System.out.println(song.toString());
-		}
-
-		//Collections.sort(songList);
-		//System.out.println(songList);
+		Collections.sort(songList);
+		System.out.println(songList);
 	}
 }
 
-class SongV2{
+//we need to "extend/implement" Comparable in order to be able to sort SongV2 objects
+//Comparable have compareTo() method that we need to implement in our class
+//We will implement it so it can sort song objects by title.
+class SongV2 implements Comparable<SongV2>, Comparator<SongV2>{
 	private String title;
 	private String artist;
 	private int bpm;
+
+	//compareTo() method implementation
+	public int compareTo(SongV2 s){
+		return title.compareTo(s.getTitle());
+	}
 
 	public SongV2(String title, String artist, int bpm){
 		this.title = title;
