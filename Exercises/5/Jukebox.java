@@ -30,6 +30,11 @@ public class Jukebox {
 		//sort by title in descending order
 		songList.sort((one,two) -> two.getTitle().compareTo(one.getTitle()));
 		System.out.println("Sorted with lambda, by title, descending" + songList);
+
+		//we put songList in HashSet constructor to build a new set
+		Set<SongV2> songSet = new HashSet<>(songList);
+		System.out.println("Printing out HashSet: " + songSet); //Still have duplicates! So, we need to override SongV2 eqals and hashCode methods
+		//Now it works!
 	}
 }
 
@@ -40,6 +45,17 @@ class SongV2 implements Comparable<SongV2>{
 	private String title;
 	private String artist;
 	private int bpm;
+
+	//override equals method
+	public boolean equals(Object o){
+		SongV2 other = (SongV2) o;
+		return title.equals(other.getTitle());
+	}
+
+	//override hashCode method
+	public int hashCode(){
+		return title.hashCode();
+	}
 
 	//compareTo() method implementation
 	public int compareTo(SongV2 s){
@@ -87,8 +103,10 @@ class MockSongs {
 		songs.add(new SongV2("somersault", "zero 7", 147));
 		songs.add(new SongV2("cassidy", "grateful dead", 158));
 		songs.add(new SongV2("$10", "hitchhiker", 140));
+		songs.add(new SongV2("$10", "hitchhiker", 140));
 		songs.add(new SongV2("havana", "cabello", 105));
 		songs.add(new SongV2("Cassidy", "grateful dead", 158));
+		songs.add(new SongV2("50 ways", "simon", 102));
 		songs.add(new SongV2("50 ways", "simon", 102));
 		return songs;
 	}
