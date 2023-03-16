@@ -34,7 +34,17 @@ public class Jukebox {
 		//we put songList in HashSet constructor to build a new set
 		Set<SongV2> songSet = new HashSet<>(songList);
 		System.out.println("Printing out HashSet: " + songSet); //Still have duplicates! So, we need to override SongV2 eqals and hashCode methods
-		//Now it works!
+		//Now it works! But.. it isn't sorted anymore. So, instead, we need TreeSet
+		
+		//It works like sort(), if we don't pass Comparator, it will use each object's compareTo()
+		Set<SongV2> sortedSongSet = new TreeSet<>(songList);
+		System.out.println("Printing out TreeSet: " + sortedSongSet);
+
+		//lambda/with comparator
+		Set<SongV2> lambdaSortedSet = new TreeSet<>((one,two) -> one.getBpm() - two.getBpm());
+		lambdaSortedSet.addAll(songList);
+		System.out.println("Printing TreeSet sorted by bpm" + lambdaSortedSet);
+
 	}
 }
 
